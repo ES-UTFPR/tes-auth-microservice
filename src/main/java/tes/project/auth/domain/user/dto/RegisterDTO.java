@@ -1,10 +1,15 @@
 package tes.project.auth.domain.user.dto;
 
-import tes.project.auth.domain.user.UserRole;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public record RegisterDTO(
+    @NotBlank(message = "Login cannot be empty.")
+    @Size(min = 3, max = 50, message = "Login must be between 3 and 50 characters.")
     String login,
-    String password,
-    UserRole role
+
+    @NotBlank(message = "Password cannot be empty.")
+    @Size(min = 8, message = "Password must be at least 8 characters long.")
+    String password
 ) {
 }

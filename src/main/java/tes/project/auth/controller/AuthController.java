@@ -7,6 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import tes.project.auth.domain.user.User;
+import tes.project.auth.domain.user.UserRole;
 import tes.project.auth.domain.user.dto.AuthDTO;
 import tes.project.auth.domain.user.dto.LoginResponseDTO;
 import tes.project.auth.domain.user.dto.RegisterDTO;
@@ -41,7 +42,7 @@ public class AuthController {
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
 
-        User user = new User(data.login(), encryptedPassword, data.role());
+        User user = new User(data.login(), encryptedPassword, UserRole.USER);
 
         this.repository.save(user);
 
