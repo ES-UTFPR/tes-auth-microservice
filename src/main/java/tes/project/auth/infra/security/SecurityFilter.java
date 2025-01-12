@@ -18,6 +18,7 @@ import java.io.IOException;
 public class SecurityFilter extends OncePerRequestFilter {
     @Autowired
     TokenService tokenService;
+
     @Autowired
     UserRepository repository;
 
@@ -30,7 +31,7 @@ public class SecurityFilter extends OncePerRequestFilter {
         var token = this.recoverToken(request);
 
         if (token != null) {
-            var subject = tokenService.validateToken(token);
+            var subject = tokenService.getSubject(token);
             UserDetails user = repository.findByLogin(subject);
 
             var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
