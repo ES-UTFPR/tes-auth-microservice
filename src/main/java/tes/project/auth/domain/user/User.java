@@ -20,11 +20,13 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     private String login;
+    private String email;
     private String password;
     private UserRole role;
 
-    public User(String login, String password, UserRole role) {
+    public User(String login, String email, String password, UserRole role) {
         this.login = login;
+        this.email = email;
         this.password = password;
         this.role = role;
     }
@@ -41,6 +43,10 @@ public class User implements UserDetails {
     @Override
     public String getUsername() {
         return login;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     @Override

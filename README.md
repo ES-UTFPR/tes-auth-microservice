@@ -45,6 +45,7 @@ Registers a new user in the system.
 ```json
 {
   "login": "string",
+  "email": "string",
   "password": "string"
 }
 ```
